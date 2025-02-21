@@ -230,29 +230,7 @@ html {
     pointer-events: none; /* Ensures the icon does not interfere with button click */
   }  
 
-/* Container for all the icons */
-.icons-container {
-  position: fixed;
-  top: 20px;
-  right: 10px; /* Position the container near the right edge */
-  display: flex;  /* Align icons horizontally */
-  flex-direction: row;  /* Arrange icons in a row */
-  align-items: center;
-  gap: 15px;  /* Add space between icons */
-  z-index: 999;     /* Ensures logo stays on top */
-  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
-  padding: 10px 15px; /* Add padding around the icons */
-  border-radius: 8px; /* Optional: rounded corners */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari/iOS fallback */
-}
 
-/* Hide Hamburger by Default */
-.hamburger {
-    font-size: 24px;
-    cursor: pointer;
-    display: none;
-}
 
 /* Responsive Menu for Mobile */
 @media (max-width: 768px) {
@@ -281,6 +259,7 @@ html {
     .nav ul li a{
         display: block;
         padding: 10px;
+        font-size: 5px;
     }
   
     .hamburger {
@@ -319,6 +298,7 @@ html {
     .nav ul li a{
         display: block;
         padding: 10px;
+        font-size: 5px;
     }
   
     .hamburger {
@@ -330,12 +310,6 @@ html {
     }
 }
 
-/* Font Awesome Icon Styling */
-.fas {
-  font-family: "Font Awesome 5 Free"; /* Ensure Font Awesome is used */
-  font-weight: 900; /* Make icons bold */
-  justify-content: top
-}
 
 /* Container for Recommendations */
 .recommendations-container {
@@ -1242,8 +1216,7 @@ nav ul li a {
   line-height: 50px; /**  Rarely used! **/
 }
 
-nav ul li a:hover,
-nav ul li a.active {
+nav ul li a:hover {
   background: green;
   
 } 
@@ -1254,7 +1227,7 @@ nav ul li a.active {
   height: 50px;     /* Maintain aspect ratio */
   position: fixed;
   top: 0px;        /* Adjust top distance from the page */
-  left: 20px;
+  left: 5px;
 }
 
 /* Style for the "Watch Trailer" heading */
@@ -1898,6 +1871,7 @@ h4 {
 
 /* Adjust styles for mobile devices */
 @media (max-width: 768px) {
+  
   .movies {
     font-size: 16px;  /* Slightly smaller font for mobile */
     margin-top: 10px;  /* Adjust margin for better spacing */
@@ -1933,6 +1907,11 @@ h4 {
 
 /* Further adjustments for very small screens (e.g., phones in portrait mode) */
 @media (max-width: 480px) {
+  nav ul li a {
+    font-size: 9px;
+    padding: 5;
+  }
+  
   .movies {
     font-size: 16px;  /* Even smaller font for very small screens */
     margin-top: 10px;  /* Further reduce margin */
