@@ -292,6 +292,43 @@ html {
     }
 }
 
+/* Responsive Menu for Mobile */
+@media (max-width: 480px) {
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav ul {
+        display: block;
+        padding: 10px;
+    }
+  
+    .nav ul li{
+        display: block;
+        padding: 10px;
+    }
+  
+    .nav ul li a{
+        display: block;
+        padding: 10px;
+    }
+  
+    .hamburger {
+        display: block;
+    }
+
+    .nav.show {
+        display: flex;
+    }
+}
 
 /* Font Awesome Icon Styling */
 .fas {
