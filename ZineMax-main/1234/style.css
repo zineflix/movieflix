@@ -19,6 +19,7 @@ html {
   overflow: scroll; /* Makes sure the scroll functionality works even if the scrollbar is hidden */
 }
   
+
   .row__poster {
     width: 200px; /* Increased width for larger posters */
     object-fit: contain;
@@ -246,30 +247,11 @@ html {
   -webkit-backdrop-filter: blur(10px); /* Safari/iOS fallback */
 }
 
-/* Style for Each Icon */
-.icon {
-  font-size: 17px;  /* Icon size */
-  color: white;  /* Icon color */
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-/* Remove spacing between the icons */
-.icon a {
-  text-decoration: none; /* Remove underline from links */
-  color: inherit; /* Inherit color from the parent */
-}
-
-/* Hover effect for icons */
-.icon:hover {
-  color: #888484; /* Change color when hovered */
-  transform: scale(1.1); /* Slightly enlarge the icon on hover */
-}
-
 /* Font Awesome Icon Styling */
 .fas {
   font-family: "Font Awesome 5 Free"; /* Ensure Font Awesome is used */
   font-weight: 900; /* Make icons bold */
+  justify-content: top
 }
 
 /* Container for Recommendations */
@@ -1142,18 +1124,54 @@ body {
   background-color: #030303;
 }
 
-.logo-container {
+nav {
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 0); /* Fully transparent at the start */
+  transition: background 0.3s ease-in-out;
   position: fixed;
-  top: 0px;        /* Adjust top distance from the page */
-  left: 10px;       /* Ensure logo is on the left */
-  z-index: 999;     /* Ensures logo stays on top */
+  top: 0;
+  z-index: 1000;
 }
+
+.nav-solid {
+    background: rgba(0, 0, 0, 1); /* Solid when scrolling */
+}
+
+nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0 0px;
+  justify-content: flex-end;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+nav ul li a {
+  display: flex;
+  color: #fff;
+  padding: 0 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 50px; /**  Rarely used! **/
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background: green;
+  
+} 
 
 /* Logo styles */
 .logo {
-  width: 100px;     /* Adjust logo size */
-  height: auto;     /* Maintain aspect ratio */
-  object-fit: contain;
+  width: auto;     /* Adjust logo size */
+  height: 50px;     /* Maintain aspect ratio */
+  position: fixed;
+  top: 0px;        /* Adjust top distance from the page */
+  left: 20px;
 }
 
 /* Style for the "Watch Trailer" heading */
@@ -1814,17 +1832,17 @@ h4 {
   }
   
   .k-drama {
-    font-size: 25px;  /* Even smaller font for very small screens */
+    font-size: 16px;  /* Even smaller font for very small screens */
     margin-top: 10px;  /* Further reduce margin */
   }
   
   .anime {
-    font-size: 25px;  /* Even smaller font for very small screens */
+    font-size: 16px;  /* Even smaller font for very small screens */
     margin-top: 10px;  /* Further reduce margin */
   }
   
   .vivamax {
-    font-size: 25px;  /* Even smaller font for very small screens */
+    font-size: 16px;  /* Even smaller font for very small screens */
     margin-top: 10px;  /* Further reduce margin */
   }  
   
@@ -1849,17 +1867,17 @@ h4 {
   }
   
   .k-drama {
-    font-size: 25px;  /* Even smaller font for very small screens */
+    font-size: 16px;  /* Even smaller font for very small screens */
     margin-top: 10px;  /* Further reduce margin */
   }
   
     .anime {
-    font-size: 25px;  /* Even smaller font for very small screens */
+    font-size: 16px;  /* Even smaller font for very small screens */
     margin-top: 10px;  /* Further reduce margin */
   }
   
     .vivamax {
-    font-size: 25px;  /* Even smaller font for very small screens */
+    font-size: 16px;  /* Even smaller font for very small screens */
     margin-top: 10px;  /* Further reduce margin */
   }  
   
