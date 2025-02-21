@@ -1,6 +1,15 @@
     const apiKey = 'a1e72fd93ed59f56e6332813b9f8dcae'; // Your TMDB API Key
 const baseUrl = 'https://api.themoviedb.org/3';
 
+window.addEventListener("scroll", function () {
+    let nav = document.querySelector("nav");
+    if (window.scrollY > 50) {
+        nav.classList.add("nav-solid"); // Solid color after scrolling down
+    } else {
+        nav.classList.remove("nav-solid"); // Transparent at the top
+    }
+});
+
 // Helper function to fetch Movies, Tv-Series, K-Drama, Anime, Vivamax and populate the row
 const fetchMovies = async (category, rowId) => {
     try {
