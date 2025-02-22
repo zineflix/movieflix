@@ -1181,14 +1181,16 @@ body {
   background-color: #030303;
 }
 
+/* Navigation Bar */
 nav {
   width: 100%;
   height: 50px;
   background: rgba(0, 0, 0, 0); /* Fully transparent at the start */
-  transition: background 0.3s ease-in-out;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 1000;
+  transition: background 0.3s ease-in-out;
 }
 
 .nav-solid {
@@ -1197,7 +1199,7 @@ nav {
 
 nav ul {
   display: flex;
-  margin: 0;
+  margin-top: 10px;
   padding: 0 0px;
   justify-content: flex-end;
 }
@@ -1209,17 +1211,16 @@ nav ul li {
 nav ul li a {
   display: flex;
   color: #fff;
-  padding: 0 10px;
+  padding: 10px 10px;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
-  line-height: 50px; /**  Rarely used! **/
+  border-radius: 5px;
+  line-height: 10px; /**  Rarely used! **/
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-  background: green;
-  
+nav ul li a:hover {
+  background: green; 
 } 
 
 /* Logo styles */
