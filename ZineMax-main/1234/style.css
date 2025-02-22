@@ -1927,10 +1927,3 @@ h4 {
         display: none;  /* Hide the menu button on desktop */
       }
     }
-
-    /* Hide the menu button on desktop */
-    @media (min-width: 480px) {
-      .menu-btn {
-        display: none;  /* Hide the menu button on desktop */
-      }
-    }
