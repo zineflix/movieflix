@@ -1,16 +1,6 @@
     const apiKey = 'a1e72fd93ed59f56e6332813b9f8dcae'; // Your TMDB API Key
 const baseUrl = 'https://api.themoviedb.org/3';
 
-// For Header
-window.addEventListener("scroll", function () {
-    let nav = document.querySelector("nav");
-    if (window.scrollY > 50) {
-        nav.classList.add("nav-solid"); // Solid color after scrolling down
-    } else {
-        nav.classList.remove("nav-solid"); // Transparent at the top
-    }
-});
-
 // Helper function to fetch Movies, Tv-Series, K-Drama, Anime, Vivamax and populate the row
 const fetchMovies = async (category, rowId) => {
     try {
@@ -478,4 +468,27 @@ window.addEventListener("load", function() {
     setTimeout(function() {
         document.getElementById("loading-screen").style.display = "none";
     }, 1000); // 3000ms = 3 seconds
+});
+
+//DINAGDAG//
+// For sticky header when scrolling
+    window.addEventListener("scroll", function () {
+      let nav = document.querySelector("nav");
+      if (window.scrollY > 50) {
+        nav.classList.add("nav-solid"); // Add solid background when scrolled
+      } else {
+        nav.classList.remove("nav-solid"); // Remove solid background at top
+      }
+    });
+
+    // Toggle menu visibility when menu button is clicked
+const menuButton = document.getElementById("menu-btn");
+const menu = document.getElementById("menu");
+
+menuButton.addEventListener("click", function () {
+  menu.classList.toggle("active"); // Toggle the "active" class on the menu <ul> to show/hide it
+});
+ 
+document.getElementById("menu-btn").addEventListener("click", function() {
+    document.getElementById("menu").classList.toggle("active");
 });
