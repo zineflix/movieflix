@@ -1919,7 +1919,7 @@ h4 {
 /* Further adjustments for very small screens (e.g., phones in portrait mode) */
 @media (max-width: 480px) {
   .logo {
-    max-width: 100px;
+    max-width: 90px;
     height: auto;
     top: 12.5px;
   }
