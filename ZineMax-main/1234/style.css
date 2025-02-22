@@ -1872,6 +1872,10 @@ h4 {
 
 /* Adjust styles for mobile devices */
 @media (max-width: 768px) {
+  nav ul li a {
+    font-size: 10px;
+    padding: 1;
+  }
   
   .movies {
     font-size: 16px;  /* Slightly smaller font for mobile */
@@ -1908,9 +1912,10 @@ h4 {
 
 /* Further adjustments for very small screens (e.g., phones in portrait mode) */
 @media (max-width: 480px) {
+  
   nav ul li a {
     font-size: 10px;
-    padding: 5;
+    padding: 1;
   }
   
   .movies {
