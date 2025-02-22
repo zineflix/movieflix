@@ -1216,7 +1216,8 @@ nav ul li a {
   line-height: 50px; /**  Rarely used! **/
 }
 
-nav ul li a:hover, {
+nav ul li a:hover,
+nav ul li a.active {
   background: green;
   
 } 
@@ -1872,7 +1873,7 @@ h4 {
 /* Adjust styles for mobile devices */
 @media (max-width: 768px) {
   .logo {
-    max-width: 100px;
+    max-width: 90px;
     height: auto;
     top: 12.5px;
   }
