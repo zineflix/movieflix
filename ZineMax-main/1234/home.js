@@ -1,6 +1,7 @@
-// ------------------------------//
-// For Responsive Navigation Bar //
-// ------------------------------//
+    const apiKey = 'a1e72fd93ed59f56e6332813b9f8dcae'; // Your TMDB API Key
+const baseUrl = 'https://api.themoviedb.org/3';
+
+// For Responsive Navigation Bar
 window.addEventListener("scroll", function () {
     let nav = document.querySelector("nav");
     if (window.scrollY > 50) {
@@ -10,45 +11,27 @@ window.addEventListener("scroll", function () {
     }
 });
 
-// 
-// -----------------------------//
-// For TMDBI API Fetch Function //
-// -----------------------------//
-const apiKey = 'a1e72fd93ed59f56e6332813b9f8dcae'; // Your TMDB API Key
-const baseUrl = 'https://api.themoviedb.org/3';
-
-// Helper function to fetch movies and populate the row
+// Helper function to fetch Movies, Tv-Series, K-Drama, Anime, Vivamax and populate the row
 const fetchMovies = async (category, rowId) => {
     try {
         let url = '';
         switch (category) {
-            case 'popular':
-                url = `${baseUrl}/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&vote_count.gte=500&vote_average=10&page=1`;
-                break; 
             case 'movies':
                 url = `${baseUrl}/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&vote_count.gte=500&vote_average=10&page=1`;
-                break;           
-            case 'trending':
-                url = `${baseUrl}/trending/movie/week?api_key=${apiKey}`;
+                break; // for Movies
+            case 'tvseries':
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&vote_count.gte=10000&vote_average=10&page=1`;
+                break; // for TV-Series
+            case 'kdrama':
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=500&with_origin_country=KR`; // for K-Drama
                 break;
-            case 'top_rated':
-                url = `${baseUrl}/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`;
+            case 'anime':
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=8&vote_average.lte=10&vote_count.gte=500&with_genres=16&with_origin_country=JP&with_original_language=ja`; // for Anime
                 break;
-            case 'action':
-                url = `${baseUrl}/discover/movie?api_key=${apiKey}&with_genres=28&page=1`;
+            case 'vivamax':
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&certification=R18&include_adult=true&include_video=false&language=en-US&page=1&region=PH&sort_by=popularity.desc&vote_count.gte=0&vote_count.lte=10&watch_region=PH&with_companies=149142&with_origin_country=PH&with_original_language=tl`; // for Vivamax
                 break;
-            case 'comedy':
-                url = `${baseUrl}/discover/movie?api_key=${apiKey}&with_genres=35&page=1`;
-                break;
-            case 'horror':
-                url = `${baseUrl}/discover/movie?api_key=${apiKey}&with_genres=27&page=1`;
-                break;
-            case 'romance':
-                url = `${baseUrl}/discover/movie?api_key=${apiKey}&with_genres=10749&page=1`;
-                break;
-            case 'animation':
-                url = `${baseUrl}/discover/movie?api_key=${apiKey}&with_genres=16&page=1`;
-                break;
+             
             default:
                 console.log('Unknown category');
                 return;
@@ -179,9 +162,9 @@ const fetchBanner = async () => {
         // Select a random movie from the list of popular movies
         const movie = data.results[Math.floor(Math.random() * data.results.length)];
 
-// ----------------------------------//
-// For Update Banner with Movie Data //
-// ----------------------------------//
+        // ----------------------
+        // Update Banner with Movie Data
+        // ----------------------
 
         // Create and add "TOP 10" label
         const topTenLabel = document.createElement('div');
@@ -200,10 +183,10 @@ const fetchBanner = async () => {
 
         // Set the banner background image using the movie's backdrop
         banner.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
-        
-// --------------------------//
-// Play Button Functionality //
-// --------------------------//
+
+        // ----------------------
+        // Play Button Functionality
+        // ----------------------
 
         // Get the Play button
         const playButton = document.getElementById('play-button');
@@ -262,9 +245,6 @@ const initArrowNavigation = () => {
     });
 };
 
-// --------------------------------//
-// Toggle Search Bar Functionality //
-// --------------------------------//
 // Toggle the search bar visibility when clicking the search icon
 function toggleSearchBar() {
     const searchBar = document.querySelector('.search-bar');
@@ -288,9 +268,6 @@ function openSearchPage() {
     window.location.href = 'search.html';  // I-replace ang 'search.html' sa URL sa imong gustong page
 }
 
-// ----------------------------------//
-// Movie Streaming API Functionality //
-// ----------------------------------//
 // Array of movie endpoints with custom server names
 const MOVIE_ENDPOINTS = [
     { url: 'https://player.videasy.net/movie/', name: 'Server 1' },
@@ -480,15 +457,11 @@ const fetchMoreLikeThis = async (movieId) => {
 fetchMovieDetails();
 
 // Fetch data for different categories
-fetchMovies('popular', 'popularMovies');
-fetchMovies('movies', 'popularMovie');
-fetchMovies('trending', 'trendingNow');
-fetchMovies('top_rated', 'topRated');
-fetchMovies('action', 'actionMovies');
-fetchMovies('comedy', 'comedyMovies');
-fetchMovies('horror', 'horrorMovies');
-fetchMovies('romance', 'romanceMovies');
-fetchMovies('animation', 'animation');
+fetchMovies('movies', 'popularMovies');
+fetchMovies('tvseries', 'popularTvSeries');
+fetchMovies('kdrama', 'popularKdrama');
+fetchMovies('anime', 'popularAnime');
+fetchMovies('vivamax', 'popularVivamax');
 
 // Fetch banner details
 fetchBanner();
