@@ -101,7 +101,13 @@ window.addEventListener("scroll", function () {
       }
     });
 
-    // Toggle menu visibility when menu button is clicked
+// Toggle menu visibility when menu button is clicked
 document.getElementById("menu-btn").addEventListener("click", function() {
     document.getElementById("menu").classList.toggle("active");
 });
+
+
+// For Floating Message Close Function
+function closeMessage() {
+        document.getElementById("floating-message").style.display = "none";
+    }
