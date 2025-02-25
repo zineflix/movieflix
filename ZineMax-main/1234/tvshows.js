@@ -447,58 +447,7 @@ changeServerBtn.addEventListener('click', () => {
     }
 };
 
-const fetchMoreLikeThis = async (tvShowId) => {
-    try {
-        const url = `${baseUrl}/tv/${tvShowId}/similar?api_key=${apiKey}&language=en-US`;
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
 
-        const similarShowsContainer = document.getElementById('similar-shows-container');
-        similarShowsContainer.innerHTML = ''; // Clear previous similar shows
-
-        // Filter out shows with no poster image
-        const validShows = data.results.filter(show => show.poster_path);
-
-        // If no valid shows, show a message
-        if (validShows.length === 0) {
-            similarShowsContainer.innerHTML = '<p>No similar TV shows available.</p>';
-            return;
-        }
-
-        // Loop through the valid TV shows and create grid items
-        validShows.forEach(show => {
-            const showItem = document.createElement('div');
-            showItem.classList.add('similar-show'); // Add the grid item class
-
-            // Movie Poster Image
-            const showImageUrl = `https://image.tmdb.org/t/p/original${show.poster_path}`;
-            const showImage = document.createElement('img');
-            showImage.src = showImageUrl;
-            showImage.alt = show.name || 'No Title';  // Default alt text if no name
-            showImage.classList.add('similar-show-img'); // Add the image class
-
-            showItem.appendChild(showImage); // Append the image
-
-            // TV Show Title
-            const showTitle = document.createElement('span');
-            showTitle.textContent = show.name || 'Untitled TV Show'; // Fallback for title if missing
-            showTitle.classList.add('show-title'); // Optional class for styling titles
-
-
-            // Add click event to redirect to the selected show page
-            showItem.addEventListener('click', () => {
-                window.location.href = `?id=${show.id}`; // Redirect to the selected TV show
-            });
-
-            similarShowsContainer.appendChild(showItem); // Append to the container
-        });
-    } catch (error) {
-        console.error('Error fetching similar TV shows:', error);
-    }
-};
 
 fetchTVShowDetails();
 
