@@ -2,17 +2,33 @@ const apiKey = "a1e72fd93ed59f56e6332813b9f8dcae";
 const baseURL = "https://api.themoviedb.org/3";
 const imgURL = "https://image.tmdb.org/t/p/w500";
 
-// Fetch Random Banner
-async function fetchBanner() {
-    const response = await fetch(`${baseURL}/trending/all/week?api_key=${apiKey}&language=en-US`);
-    const data = await response.json();
-    const item = data.results[Math.floor(Math.random() * data.results.length)];
+// Function to fetch and set a random trending movie/TV show as a banner
+const bannerTitle = document.getElementById("banner-title");
+const bannerGenre = document.getElementById("banner-genre");
+const bannerDescription = document.getElementById("banner-description");
+const banner = document.querySelector(".banner");
 
-    document.querySelector(".banner").style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`;
-    document.getElementById("banner-title").textContent = item.title || item.name;
-    document.getElementById("banner-description").textContent = item.overview || "No description available.";
-    document.getElementById("banner-date").textContent = `Release Date: ${item.release_date || item.first_air_date || "N/A"}`;
+async function fetchBanner() {
+    const response = await fetch(
+        `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}&language=en-US`
+    );
+    const data = await response.json();
+    const randomItem = data.results[Math.floor(Math.random() * data.results.length)];
+
+    banner.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${randomItem.backdrop_path})`;
+    bannerTitle.textContent = randomItem.title || randomItem.name;
+    bannerDescription.textContent = randomItem.overview || "No description available.";
+    
+    // Fetch genres
+    const genresResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`);
+    const genresData = await genresResponse.json();
+    const genreMap = Object.fromEntries(genresData.genres.map(g => [g.id, g.name]));
+    const genreNames = (randomItem.genre_ids || []).map(id => genreMap[id]).join(", ");
+    
+    bannerGenre.textContent = `Genre: ${genreNames || "Unknown"}`;
 }
+
+fetchBanner();
 
 // Fetch Media Rows
 async function fetchMedia(url, containerId, type) {
@@ -101,7 +117,7 @@ window.addEventListener("scroll", function () {
       }
     });
 
-// Toggle menu visibility when menu button is clicked
+    // Toggle menu visibility when menu button is clicked
 document.getElementById("menu-btn").addEventListener("click", function() {
     document.getElementById("menu").classList.toggle("active");
 });
@@ -111,3 +127,5 @@ document.getElementById("menu-btn").addEventListener("click", function() {
 function closeMessage() {
         document.getElementById("floating-message").style.display = "none";
     }
+
+
