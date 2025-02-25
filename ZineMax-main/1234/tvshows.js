@@ -329,8 +329,7 @@ const fetchTVShowDetails = async () => {
             seasonsContainer.appendChild(seasonItem);
         });
 
-        // Fetch More Like This TV Shows
-        fetchMoreLikeThis(tvShowId);
+        
 
         // Toggle Dropdown visibility
         const toggleDropdown = (dropdownId) => {
