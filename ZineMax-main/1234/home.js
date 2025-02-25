@@ -47,14 +47,10 @@ async function fetchBanner() {
 
         if (data.results.length > 0) {
             const randomIndex = Math.floor(Math.random() * data.results.length);
-            const item = data.results[randomIndex];
+            const randomItem = data.results[randomIndex];
 
-            document.getElementById('banner').style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${item.backdrop_path})`;
-            document.getElementById('banner').innerHTML = `
-                <h1>${item.name || item.title}</h1>
-                <p>⭐ ${item.vote_average.toFixed(1)} | ${item.media_type.toUpperCase()}</p>
-                <p>${item.overview}</p>
-            `;
+            document.getElementById('banner').style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${randomItem.backdrop_path})`;
+            document.getElementById('banner').innerText = randomItem.name || randomItem.title;
         }
     } catch (error) {
         console.error('Error fetching banner:', error);
