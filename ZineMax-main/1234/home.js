@@ -58,7 +58,9 @@ async function fetchBanner() {
 }
 
 // API Requests
-fetchMedia(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}&language=ko-KR&vote_count.gte=500`, 'korean-tv-shows', 'tv');
-fetchMedia(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&language=ja-JP&with_genres=16&vote_count.gte=500`, 'japanese-animations', 'tv');
+fetchMedia(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_origin_country=KR&vote_count.gte=500`, 'korean-tv-shows', 'tv'); 
+
+fetchMedia(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_origin_country=JP&with_genres=16&vote_count.gte=500`, 'japanese-animations', 'tv');
+
 fetchMedia(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_companies=149142`, 'filipino-movies', 'movie');
 fetchBanner();
