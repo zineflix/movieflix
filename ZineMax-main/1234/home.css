@@ -69,19 +69,37 @@ body {
 
 /* Scroll Container */
 .scroll-container {
+    position: relative; /* Needed for absolute positioning of arrows */
     display: flex;
     align-items: center;
-    position: relative;
+    justify-content: center;
 }
 
 .scroll-left, .scroll-right {
-    background: rgba(255, 255, 255, 0.5);
-  
+    position: absolute;
+    top: 45%; /* Center vertically */
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white;
     border: none;
-    font-size: 20px;
+    font-size: 30px;
     padding: 10px;
     cursor: pointer;
-    z-index: 10;
+    z-index: 10; /* Ensure arrows are above the posters */
+    border-radius: 5%;
+}
+
+.scroll-left {
+    left: 0px; /* Adjust left arrow position */
+}
+
+.scroll-right {
+    right: 0px; /* Adjust right arrow position */
+}
+
+.scroll-left:hover, .scroll-right:hover {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
 }
 
 /* Mobile Navbar */
@@ -119,26 +137,43 @@ body {
 
 /* Banner */
 .banner {
+    position: relative;
     width: 100%;
     height: 500px;
     background-size: cover;
     background-position: center;
     display: flex;
-    justify-content: left;
     align-items: center;
-    text-align: left;
-    text-shadow: 2px 2px 10px black;
-    color: rgb(255, 255, 255);
     padding: 20px;
 }
+.banner h1 {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+.banner p {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+.banner p1 {
+        font-size: 15px;
+    }
 
 .banner-content {
     max-width: 40%;
     background: rgba(0, 0, 0, 0.3);
-    padding: 40px;
+    padding: 25px;
     border-radius: 10px;
 }
-
+.banner::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #121212 100%);
+        }
 
 /* Mobile Banner */
 @media (max-width: 768px) {
@@ -150,13 +185,18 @@ body {
     .banner-content {
         max-width: 75%;
         font-size: 14px;
+        padding: 5px;
     }
 
     .banner h1 {
-        font-size: 15px;
+        font-size: 25px;
+        margin-bottom: 5px;
     }
 
     .banner p {
+        font-size: 8px;
+    }
+    .banner p1 {
         font-size: 10px;
     }
 }
@@ -198,7 +238,7 @@ body {
 }
 
 .media-item img {
-    width: 200px;
+    width: 205px;
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
 }
@@ -206,7 +246,7 @@ body {
 /* Mobile Poster Adjustments */
 @media (max-width: 768px) {
     .media-item img {
-        width: 200px;
+        width: 120px;
     }
 }
 
@@ -281,7 +321,7 @@ position: fixed;
 bottom: 0;
 left: 50%;
 transform: translateX(-50%);
-background-color: #22222242;
+background-color: #030303;
 color: white;
 text-align: center;
 padding: 15px;
@@ -294,7 +334,7 @@ backdrop-filter: blur(8px); /* Apply blur effect to the background */
 }
 
 #floating-message button {
-background-color: #111; /* Green background for the "OK" button */
+background-color: red; /* Green background for the "OK" button */
 color: white;
 border: none;
 font-size: 10px;
@@ -306,4 +346,18 @@ margin-top: 10px; /* Adds space between the message and the button */
 
 #floating-message button:hover {
 background-color: #000000; /* Darker green on hover */
+}
+
+
+@media (max-width: 768px) {
+       .scroll-left {
+          font-size: 20px;
+          padding: 8px;
+}
+
+       .scroll-right {
+          font-size: 20px;
+          padding: 8px;
+}
+       
 }
