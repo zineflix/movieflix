@@ -365,8 +365,9 @@ background-color: #0296cc; /* Darker green on hover */
 @media (max-width: 768px) {
    #floating-message {
      padding: 5px;
-     font-size: 10px;
-     width: 50%;
+     font-size: 15px;
+     width: 75%;
+     top: 25%;
    
 }
 }
