@@ -52,13 +52,7 @@
                 Loading description...
             </h1> <!-- This will be replaced dynamically -->
         </div>
-    
-<!-- Floating Message -->
-  <div id="floating-message">
-    <i class="fa-solid fa-triangle-exclamation"></i><h2>Disclaimer</h2><br>
-      This site does not host any files on its server. All content displayed on this site is provided by third-party sites and services. We don't have control on any content, or services provided by their sites. If you have any questions or concerns about the content hosted by third-party sites, please contact the site owner or administrator directly!
-      <button onclick="closeMessage()">OK</button>
-  </div>      
+        
 
         <div class="banner--fadeBottom"></div>
 </header> 
@@ -207,44 +201,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
     
- <!--Script to Disable Right-Click function and redirect to another page if checking Developers Tools-->
-<script>  
-// Disable Right-Click
-document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-});
-
-// Disable Keyboard Shortcuts (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
-document.addEventListener('keydown', function (event) {
-    if (event.key === "F12" || 
-        (event.ctrlKey && event.shiftKey && event.key === "I") || 
-        (event.ctrlKey && event.shiftKey && event.key === "J") || 
-        (event.ctrlKey && event.key === "U")) {
-        event.preventDefault();
-    }
-});
-
-// Redirect to Google if DevTools is Opened
-setInterval(function(){
-    if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200){
-        window.location.href = "https://www.effectiveratecpm.com/w6gnwauzb?key=4d8f595f0136eea4d9e6431d88f478b5"; // Redirect to Adsterra Ads
-    }
-}, 1000);
-
-// Prevent iFrame Embedding (Clickjacking Protection)
-if (window !== window.top) {
-    window.top.location = window.location;
-}
-
-// Prevent Viewing Page Source
-document.onkeydown = function(e) {
-    if (e.keyCode == 123) { return false; } // F12
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Ctrl+Shift+I
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Ctrl+Shift+J
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // Ctrl+U
-}; 
-</script>  
+ 
   
   </body>
 
   </html>
+
+
+
+
