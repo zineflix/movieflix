@@ -1850,3 +1850,21 @@ h4 {
 .movie-rating i {
     margin-right: 5px;
 }
+
+.tv-show-rating {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: gold;
+    padding: 5px 8px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.tv-show-rating i {
+    margin-right: 5px;
+}
