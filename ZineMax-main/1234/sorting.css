@@ -67,12 +67,12 @@ h1 {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .card img {
     width: 100%;
-    height: auto; /* Default image height */
+    height: 100%; /* Default image height */
     object-fit: cover; /* Ensures the image maintains aspect ratio */
     border-bottom: none; /* Removed the bottom border */
 }
@@ -147,10 +147,10 @@ h1 {
     }
 
     .card {
-        height: auto;
+        height: 100%;
     }    
     .card img {
-        height: auto; /* Adjust image height for mobile */
+        height: 100%; /* Adjust image height for mobile */
     }
 }
 
