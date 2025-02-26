@@ -88,9 +88,6 @@ html {
 
 /* Adjustments for mobile devices */
 @media (max-width: 768px) {
-  .banner {
-    height: 300px;
-  }
   .banner__title {
     font-size: 2.5rem;  /* Slightly smaller font size on mobile */
     padding-bottom: 0.2rem;  /* Keep bottom padding consistent */
@@ -107,9 +104,6 @@ html {
 
 /* Further adjustments for very small screens (e.g., phones in portrait mode) */
 @media (max-width: 480px) {
-  .banner {
-    height: 300px;
-  }
   .banner__title {
     font-size: 2rem;  /* Smaller font size on very small screens */
     padding-bottom: 0.2rem;  /* Keep padding consistent */
