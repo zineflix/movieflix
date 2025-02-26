@@ -22,20 +22,23 @@ const fetchTVShows = async (category, rowId) => {
             case 'trending':
                 url = `${baseUrl}/trending/tv/week?api_key=${apiKey}`;
                 break;
+            case 'mystery':
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=8&vote_count.gte=1500&with_genres=9648`;
+                break;
             case 'top_rated':
                 url = `${baseUrl}/tv/top_rated?api_key=${apiKey}&language=en-US&page=1`;
-                break;
+                break;   
             case 'drama':
-                url = `${baseUrl}/discover/tv?api_key=${apiKey}&with_genres=18&page=1`; // Genre ID 18 is Drama
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=6&vote_count.gte=0&with_genres=18&page=1`; // Genre ID 18 is Drama
                 break;
             case 'comedy':
-                url = `${baseUrl}/discover/tv?api_key=${apiKey}&with_genres=35&page=1`; // Genre ID 35 is Comedy
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=5&vote_count.gte=3000&with_genres=35&page=1`; // Genre ID 35 is Comedy
                 break;
             case 'romance':
-                url = `${baseUrl}/discover/tv?api_key=${apiKey}&with_genres=10749&page=1`; // Genre ID 10749 is Romance
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=5&vote_count.gte=10&with_genres=10749&page=1`; // Genre ID 10749 is Romance
                 break;
             case 'crime':
-                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=8&vote_count.gte=5000&with_genres=80`; // Genre ID 80 is Crime
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=8&vote_count.gte=3000&with_genres=80`; // Genre ID 80 is Crime
                 break;     
             default:
                 console.log('Unknown category');
@@ -472,6 +475,7 @@ fetchTVShowDetails();
 fetchTVShows('popular', 'popularTVShows');
 fetchTVShows('trending', 'trendingTVShows');
 fetchTVShows('top_rated', 'topRatedTVShows');
+fetchTVShows('mystery', 'mysteryTVShows');
 fetchTVShows('drama', 'dramaTVShows');
 fetchTVShows('comedy', 'comedyTVShows');
 fetchTVShows('romance', 'romanceTVShows');
