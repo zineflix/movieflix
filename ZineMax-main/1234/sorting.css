@@ -71,7 +71,7 @@ h1 {
 
 .card img {
     width: 100%;
-    height: 250px; /* Default image height */
+    height: auto; /* Default image height */
     object-fit: cover; /* Ensures the image maintains aspect ratio */
     border-bottom: none; /* Removed the bottom border */
 }
@@ -146,7 +146,7 @@ h1 {
     }
 
     .card img {
-        height: 180px; /* Adjust image height for mobile */
+        height: auto; /* Adjust image height for mobile */
     }
 }
 
