@@ -34,8 +34,8 @@ const fetchTVShows = async (category, rowId) => {
             case 'romance':
                 url = `${baseUrl}/discover/tv?api_key=${apiKey}&with_genres=10749&page=1`; // Genre ID 10749 is Romance
                 break;
-            case 'documentary':
-                url = `${baseUrl}/discover/tv?api_key=${apiKey}&with_genres=99&page=1`; // Genre ID 99 is Documentary
+            case 'crime':
+                url = `${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=true&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=8&vote_count.gte=5000&with_genres=80`; // Genre ID 80 is Crime
                 break;     
             default:
                 console.log('Unknown category');
@@ -51,62 +51,32 @@ const fetchTVShows = async (category, rowId) => {
 
         if (data.results && data.results.length > 0) {
             data.results.forEach(tvShow => {
-                const tvShowCard = document.createElement('div');
-                tvShowCard.classList.add('tv-show-card');
-                tvShowCard.style.position = 'relative'; // Ensure the card has a position context for the icon
+    const tvShowCard = document.createElement('div');
+    tvShowCard.classList.add('tv-show-card');
+    tvShowCard.style.position = 'relative';
 
-                // TV Show poster
-                const tvShowPoster = document.createElement('img');
-                tvShowPoster.classList.add('row__poster');
-                tvShowPoster.src = `https://image.tmdb.org/t/p/w500${tvShow.poster_path}`;
-                tvShowPoster.alt = tvShow.name;
+    // Tv Show poster
+    const tvShowPoster = document.createElement('img');
+    tvShowPoster.classList.add('row__poster');
+    tvShowPoster.src = `https://image.tmdb.org/t/p/w500${tvShow.poster_path}`;
+    tvShowPoster.alt = tvShow.name;
 
-                // Add "Add to List" icon (Font Awesome plus icon)
-                const addToListIcon = document.createElement('button');
-                addToListIcon.classList.add('add-to-list-icon');
-                addToListIcon.innerHTML = '<i class="fas fa-plus"></i>'; // Default plus icon
+    // Star Rating
+    const rating = document.createElement('div');
+    rating.classList.add('tv-show-rating');
+    rating.innerHTML = `<i class="fas fa-star"></i> ${tvShow.vote_average.toFixed(1)}`; // Star icon with rating
 
-                // Check if the TV show is in the local storage list
-                let tvShowList = JSON.parse(localStorage.getItem('tvShowList')) || [];
-                if (tvShowList.find(show => show.id === tvShow.id)) {
-                    addToListIcon.querySelector('i').classList.remove('fa-plus');
-                    addToListIcon.querySelector('i').classList.add('fa-minus'); // Set to minus if already in list
-                }
+    // Append elements to the Tv Show card
+    tvShowCard.appendChild(rating);
+    tvShowCard.appendChild(tvShowPoster);
 
-                // Event listener for "Add to List" icon
-                addToListIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();  // Prevent TV show click event
+    // Click event to navigate to details page
+    tvShowCard.addEventListener('click', () => {
+        window.location.href = `tvshows-details.html?id=${tvShow.id}`;
+    });
 
-                    // Toggle between plus and minus icons
-                    const icon = addToListIcon.querySelector('i');
-                    if (icon.classList.contains('fa-plus')) {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                        
-                        // Add the TV show to localStorage
-                        tvShowList.push(tvShow);  // Add the TV show to the list
-                        localStorage.setItem('tvShowList', JSON.stringify(tvShowList)); // Save back to localStorage
-                    } else {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                
-                        // Remove TV show from localStorage
-                        tvShowList = tvShowList.filter(show => show.id !== tvShow.id);  // Remove TV show by ID
-                        localStorage.setItem('tvShowList', JSON.stringify(tvShowList)); // Save back to localStorage
-                    }
-                });
-
-                // Append the poster and icon to the TV show card
-                tvShowCard.appendChild(tvShowPoster);
-                tvShowCard.appendChild(addToListIcon);
-
-                // Add click event to each TV show poster to redirect to the details page
-                tvShowCard.addEventListener('click', () => {
-                    window.location.href = `tvshows-details.html?id=${tvShow.id}`;
-                });
-
-                tvShowCards.appendChild(tvShowCard);
-            });
+    tvShowCards.appendChild(tvShowCard);
+});
         } else {
             console.log(`No results for category: ${category}`);
         }
@@ -125,16 +95,9 @@ const fetchBanner = async () => {
         // Get a random TV show from the list of trending TV shows
         const tvShow = data.results[Math.floor(Math.random() * data.results.length)];
 
-        // ----------------------
-        // Add "TOP 10" label to TV show banner
-        // ----------------------
-
-        // Create and add "TOP 10" label
-        const topTenLabel = document.createElement('div');
-        topTenLabel.classList.add('top-ten-label');
-        topTenLabel.textContent = "TOP 10";  // Text "TOP 10" added above the title
+        
         const banner = document.querySelector('.banner');
-        banner.appendChild(topTenLabel);  // Add the label to the banner
+       
 
         // ----------------------
         // Update Banner with TV Show Data
@@ -269,18 +232,22 @@ const fetchTVShowDetails = async () => {
 
         document.getElementById('tv-show-description').textContent = tvShow.overview;
 
-        const tvShowRating = tvShow.vote_average;
+        // Tv Show Rating (star rating)
+        const tvShowRating = tvShow.vote_average; // Rating from 1 to 10
         const starContainer = document.getElementById('tv-show-rating');
-        starContainer.innerHTML = '';
-        const filledStars = Math.round(tvShowRating / 2);
+        starContainer.innerHTML = ''; // Clear existing stars
+
+        const filledStars = Math.round(tvShowRating / 2); // Convert 10-point rating to 5-point scale
         const emptyStars = 5 - filledStars;
 
+        // Add filled stars
         for (let i = 0; i < filledStars; i++) {
             const star = document.createElement('span');
             star.classList.add('star', 'filled');
             starContainer.appendChild(star);
         }
 
+        // Add empty stars
         for (let i = 0; i < emptyStars; i++) {
             const star = document.createElement('span');
             star.classList.add('star', 'empty');
@@ -508,7 +475,7 @@ fetchTVShows('top_rated', 'topRatedTVShows');
 fetchTVShows('drama', 'dramaTVShows');
 fetchTVShows('comedy', 'comedyTVShows');
 fetchTVShows('romance', 'romanceTVShows');
-fetchTVShows('documentary', 'documentaryTVShows');
+fetchTVShows('crime', 'crimeTVShows');
 
 // Fetch banner details for TV Shows
 fetchBanner();
