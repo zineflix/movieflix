@@ -67,6 +67,7 @@ h1 {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
+    height: auto;
 }
 
 .card img {
@@ -145,6 +146,9 @@ h1 {
         grid-template-columns: repeat(3, 1fr); /* 3 items per row */
     }
 
+    .card {
+        height: auto;
+    }    
     .card img {
         height: auto; /* Adjust image height for mobile */
     }
