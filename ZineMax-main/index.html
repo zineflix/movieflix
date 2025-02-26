@@ -108,25 +108,35 @@
 
 <!--For Chat With Us Function Start-->
     <div id="chat-container">
-    <button id="chat-button">Chat with Us</button>
-    <div id="chat-box" style="display: none;">
+    <button id="chat-button">💬 Chat with Us</button>
+    <div id="chat-box">
+        <span id="close-chat">✖</span>
         <input type="email" id="user-email" placeholder="Enter your email..." required />
         <textarea id="chat-message" placeholder="Type your message..." required></textarea>
         <button id="send-message">Send</button>
     </div>
 </div>
 
+
     <!--Script for Chat With Us-->
     <script>
 document.addEventListener("DOMContentLoaded", function () {
     const chatButton = document.getElementById("chat-button");
     const chatBox = document.getElementById("chat-box");
+    const closeChat = document.getElementById("close-chat");
     const sendButton = document.getElementById("send-message");
 
+    // Show chat box when clicking the chat button
     chatButton.addEventListener("click", function () {
-        chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
+        chatBox.style.display = "block";
     });
 
+    // Close chat box when clicking the close button
+    closeChat.addEventListener("click", function () {
+        chatBox.style.display = "none";
+    });
+
+    // Send message
     sendButton.addEventListener("click", function () {
         const userEmail = document.getElementById("user-email").value;
         const message = document.getElementById("chat-message").value;
@@ -158,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
 
 <!--For Chat With Us Function End-->
     
