@@ -39,7 +39,19 @@ async function fetchMedia(url, containerId, type) {
     data.results.forEach(item => {
         const mediaItem = document.createElement("div");
         mediaItem.classList.add("media-item");
-        mediaItem.innerHTML = `<img src="${imgURL + item.poster_path}" alt="${item.title || item.name}">`;
+
+        // Round the rating to one decimal place
+        const rating = item.vote_average.toFixed(1);
+
+        mediaItem.innerHTML = `
+            <div class="poster-card">
+                <div class="rating">
+                    <span class="star"><i class="fas fa-star"></i></span> <span class="rating-number">${rating}</span>
+                </div>
+                <img src="${imgURL + item.poster_path}" alt="${item.title || item.name}">
+            </div>
+        `;
+        
         mediaItem.addEventListener("click", () => {
             window.location.href = type === "movie" 
                 ? `movie-details.html?movie_id=${item.id}`
@@ -127,5 +139,4 @@ document.getElementById("menu-btn").addEventListener("click", function() {
 function closeMessage() {
         document.getElementById("floating-message").style.display = "none";
     }
-
 
