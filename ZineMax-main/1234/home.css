@@ -236,6 +236,7 @@ body {
 /* Media Items */
 .media-item {
     cursor: pointer;
+    position: relative;
 }
 
 .media-item img {
@@ -472,3 +473,57 @@ background-color: #0296cc; /* Darker green on hover */
     }
 }
 /* Chat button styling End */
+
+/* Star Rating Styles */
+/* Container for each media item */
+.media-item {
+    position: relative;
+    display: inline-block;
+}
+
+/* Poster card wrapper */
+.poster-card {
+    position: relative;
+    display: inline-block;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Rating inside the card, positioned at the top-left */
+.rating {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: gold;
+    padding: 5px 8px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+/* Star icon */
+.star {
+  font-size: 1.3rem;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.star.filled::before {
+  content: '★'; /* Filled star */
+  color: #f7c400; /* Gold color */
+}
+
+.star.empty::before {
+  content: '☆'; /* Empty star */
+  color: #ccc; /* Light gray color for empty stars */
+}
+
+/* Poster image */
+.poster-card img {
+    width: 205px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
