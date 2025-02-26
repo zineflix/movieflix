@@ -57,62 +57,33 @@ const fetchMovies = async (category, rowId) => {
 
         if (data.results && data.results.length > 0) {
             data.results.forEach(movie => {
-                const movieCard = document.createElement('div');
-                movieCard.classList.add('movie-card');
-                movieCard.style.position = 'relative'; // Ensure the card has a position context for the icon
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('movie-card');
+    movieCard.style.position = 'relative';
 
-                // Movie poster
-                const moviePoster = document.createElement('img');
-                moviePoster.classList.add('row__poster');
-                moviePoster.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-                moviePoster.alt = movie.title;
+    // Movie poster
+    const moviePoster = document.createElement('img');
+    moviePoster.classList.add('row__poster');
+    moviePoster.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    moviePoster.alt = movie.title;
 
-                // Add "Add to List" icon (Font Awesome plus icon)
-                const addToListIcon = document.createElement('button');
-                addToListIcon.classList.add('add-to-list-icon');
-                addToListIcon.innerHTML = '<i class="fas fa-plus"></i>'; // Default plus icon
+    // Star Rating
+    const rating = document.createElement('div');
+    rating.classList.add('movie-rating');
+    rating.innerHTML = `<i class="fas fa-star"></i> ${movie.vote_average.toFixed(1)}`; // Star icon with rating
 
-                // Check if the movie is in the local storage list
-                let movieList = JSON.parse(localStorage.getItem('movieList')) || [];
-                if (movieList.find(m => m.id === movie.id)) {
-                    addToListIcon.querySelector('i').classList.remove('fa-plus');
-                    addToListIcon.querySelector('i').classList.add('fa-minus'); // Set to minus if already in list
-                }
+    // Append elements to the movie card
+    movieCard.appendChild(rating);
+    movieCard.appendChild(moviePoster);
 
-                // Event listener for "Add to List" icon
-                addToListIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();  // Prevent movie click event
-                
-                    // Toggle between plus and minus icons
-                    const icon = addToListIcon.querySelector('i');
-                    if (icon.classList.contains('fa-plus')) {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                        
-                        // Add the movie to localStorage
-                        movieList.push(movie);  // Add the movie to the list
-                        localStorage.setItem('movieList', JSON.stringify(movieList)); // Save back to localStorage
-                    } else {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                
-                        // Remove movie from localStorage
-                        movieList = movieList.filter(m => m.id !== movie.id);  // Remove movie by ID
-                        localStorage.setItem('movieList', JSON.stringify(movieList)); // Save back to localStorage
-                    }
-                });
+    // Click event to navigate to details page
+    movieCard.addEventListener('click', () => {
+        window.location.href = `movie-details.html?movie_id=${movie.id}`;
+    });
 
-                // Append the poster and icon to the movie card
-                movieCard.appendChild(moviePoster);
-                movieCard.appendChild(addToListIcon);
+    movieCards.appendChild(movieCard);
+});
 
-                // Add click event to each movie poster to redirect to the movie details page
-                movieCard.addEventListener('click', () => {
-                    window.location.href = `movie-details.html?movie_id=${movie.id}`;
-                });
-
-                movieCards.appendChild(movieCard);
-            });
         } else {
             console.log(`No results for category: ${category}`);
         }
@@ -177,12 +148,9 @@ const fetchBanner = async () => {
         // Update Banner with Movie Data
         // ----------------------
 
-        // Create and add "TOP 10" label
-        const topTenLabel = document.createElement('div');
-        topTenLabel.classList.add('top-ten-label');
-        topTenLabel.textContent = "TOP 10";  // Text "TOP 10" added above the title
+        
         const banner = document.querySelector('.banner');
-        banner.appendChild(topTenLabel);  // Add the label to the banner
+        
 
         // Set the banner title to the selected movie's title
         const bannerTitle = document.querySelector('.banner__title');
