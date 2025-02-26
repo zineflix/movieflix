@@ -583,7 +583,7 @@ body {
 }
 
 #change-server-btn:hover {
-  background-color: darkred;
+  background-color: black;
 }
 
 .server-dropdown {
@@ -844,7 +844,7 @@ body {
   position: absolute;
   top: 0px;
   right: 100px;
-  background-color: rgba(221, 27, 27, 0.39);
+  background-color: #0296cc;
   color: white;
   font-size: 14px;
   padding: 10px;
@@ -856,7 +856,7 @@ body {
 }
 
 #change-server-btn:hover {
-  background-color: darkred;
+  background-color: black;
 }
 
 .server-dropdown {
