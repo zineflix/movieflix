@@ -44,7 +44,7 @@ h1 {
     justify-items: center;
     overflow: auto; /* Enable scrolling */
     max-height: 100vh; /* Adjust height to allow scrolling */
-    padding-right: 15px; /* Prevent horizontal scroll */
+    padding-right: 0px; /* Prevent horizontal scroll */
 }
 
 /* Hide the scrollbar but still allow scrolling */
