@@ -332,6 +332,7 @@ border-radius: 20px; /* Rounded top corners */
 width: 30%; /* You can adjust the width as needed */
 backdrop-filter: blur(8px); /* Apply blur effect to the background */
 -webkit-backdrop-filter: blur(8px); /* Ensure blur effect works on iOS */
+border: 2px solid white;
 }
 
 #floating-message button {
